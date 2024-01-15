@@ -1,17 +1,19 @@
 import React from 'react'
-import { ThemeProvider } from './components/ThemeProvider'
-import { ThemeToggleButton } from './components/ThemeToggleButton'
-import { Main } from './Main'
+import './globals.css';
+import { ThemeProvider } from './components/ThemeProvider';
+import { ThemeToggleButton } from './components/ThemeToggleButton';
+import { Page } from './Main'
+const App = () => {
 
-function Home() {
   return (
-    <div id='main'>
+    <div id="main">
       <ThemeProvider>
-      <Main/>
-      <ThemeToggleButton/>
+        <Page />
+        <ThemeToggleButton />
       </ThemeProvider>
     </div>
   )
 }
 
-export default Home
+
+export default App;

@@ -1,36 +1,18 @@
 'use client'
-import React, { useEffect, useState } from 'react';
-import { useTheme } from './ThemeProvider';
-
+import React from 'react';
+import {  useThemeContext } from "./ThemeProvider"
 
 const LocalThemedBox = () => {
-    const {theme, toggleTheme} = useTheme();
-
-    const [localTheme, toggleLocalTheme] = useState(theme);
-
-    function handleLocalTheme(){
-
-        toggleLocalTheme(prev=>{
-            return prev == "dark" ? "light" : "dark";
-        })
-
-    }
-    useEffect(()=>{
-
-        toggleLocalTheme(theme);
-
-    },[theme])
-
-
-
+let context=useThemeContext();
+let { setLocal, local }=context;
 return(
-    <div style={{width:'200px',height:'200px',border:'2px solid green'}} className={`bg-${localTheme}`} id="local-themed-box">
+    <div style={{width:'200px',height:'200px',border:'2px solid green'}} id="local-themed-box" className={(local)?"bg-light":"bg-dark"}>
         {/* Write code below this line */}
-        <p className={`txt-${localTheme}`} id='local-themed-text-container' >Hiiii</p>
-        
-        <button onClick={handleLocalTheme} id='local-theme-toggler' className={`btn txt-${localTheme} btn-${localTheme}`}>Toggle local theme to {localTheme == "dark" ? "light" : "dark"}</button>
-        
-        
+        <p id="local-themed-text-container" className={local?"txt-light":"txt-dark"}> lorem ipsum dolor iterit n stuff</p>
+            
+        <button id="local-theme-toggler" className={local?"btn btn-light":"btn btn-dark"}
+        onClick={()=>setLocal(!local)}
+        >{local?"Toggle local theme to dark":"Toggle local theme to light"}</button>
     </div>
 )
 }

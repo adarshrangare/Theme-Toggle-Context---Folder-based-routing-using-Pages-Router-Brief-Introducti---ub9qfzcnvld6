@@ -1,20 +1,21 @@
 'use client'
 import React from 'react';
 import { LocalThemedBox } from './components/LocalThemedBox';
-import { ThemeContext, useTheme } from './components/ThemeProvider';
+import { useThemeContext } from './components/ThemeProvider';
 
+const Page = () => {
+    let context=useThemeContext();
+    let {global}=context;
 
-const Main = () => {
-    const {theme, toggleTheme } = useTheme();
     return(
-        <div className={`container bg-${theme}`} id="themed-page">
-            <p id="themed-text-container" className={`txt-${theme}`}>
+        <div className={global?"container bg-light":"container bg-dark"} id="themed-page">
+            <p id="themed-text-container" className={global?"txt-light":"txt-dark"}>
                 lorem ipsum dolor iterit n stuff
             </p>
-            <button className={`btn btn-${theme} txt-${theme}`} onClick={toggleTheme} id="themed-button">Themed Button</button>
+            <button  id="themed-button" className={global?"btn btn-light txt-light":"btn btn-dark txt-dark"}>Themed Button</button>
             <LocalThemedBox />
         </div>
     )
 }
 
-export { Main }
+export { Page }
